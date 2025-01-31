@@ -17,7 +17,8 @@
     "paths": {
       "~/*": ["./app/*"],
       "@common/*": ["./app/common/*"],
-      "@features/*": ["./app/features/*"]
+      "@features/*": ["./app/features/*"],
+      "@routes/*": ["./app/routes/*"]
     },
     "esModuleInterop": true,
     "verbatimModuleSyntax": true,
