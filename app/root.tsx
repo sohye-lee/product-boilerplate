@@ -10,6 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 import Navigation from "./common/components/navigation";
+import { Settings } from "luxon";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -26,6 +27,8 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  Settings.defaultLocale = "en-US";
+  Settings.defaultZone = "America/New_York";
   return (
     <html lang="en">
       <head>
@@ -46,7 +49,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (<div className="flex flex-col min-h-screen pt-16">
     <Navigation isLoggedIn={true} hasNotifications={true} hasMessages={true} />
-    <div className="max-w-screen-2xl w-full mx-auto pt-12">
+    <div className="max-w-screen-2xl w-full mx-auto lg:pt-4 px-4">
       <Outlet />
     </div>
   </div>)
@@ -69,14 +72,19 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
+    <main>
+      <div className="w-full h-[calc(100vh-6rem)] min-h-[36rem]  md:h-[calc(100vh-10rem)] lg:min-h-[48rem]  p-10 flex justify-center items-center text-lg text-center bg-gradient-to-b from-gray-900 to-purple-600 text-white rounded-xl">
+        <h1 className="text-2xl font-bold">{message}</h1>
+        <p className="text-md">{details}</p>
+  
+      </div>
+      {/* <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
         <pre className="w-full p-4 overflow-x-auto">
           <code>{stack}</code>
         </pre>
-      )}
+      )} */}
     </main>
   );
 }

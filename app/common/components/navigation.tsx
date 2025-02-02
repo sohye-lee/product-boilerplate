@@ -31,12 +31,12 @@ const menus = [
             {
                 label: "Leaderboards",
                 path: "/products/leaderboards",
-                description: "View the leaderboards for each product"
+                description: "View the products by upvotes"
             },
             {
                 label: "Categories",
                 path: "/products/categories",
-                description: "View the categories for each product"
+                description: "View the products by category"
             },
              {
                 label: "Search",
@@ -134,7 +134,7 @@ const menus = [
     },
     {
         label: "Ideas GPT",
-        path: "/ideas-gpt",
+        path: "/ideas",
     },
     {
         label: "Teams",

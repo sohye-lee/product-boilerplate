@@ -6,21 +6,29 @@ import { Separator } from "@common/components/ui/separator";
 import { PostCard } from "@features/community/components/post-card";
 import { IdeaCard } from "~/features/ideas/components/idea-card";
 import { JobCard } from "~/features/jobs/components/job-card";
-import { Card, CardFooter, CardHeader, CardTitle } from "~/common/components/ui/card";
-import { Badge } from "~/common/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "~/common/components/ui/avatar";
 import { TeamCard } from "~/features/teams/components/team-card";
+import type { Route } from "~/+types/home";
 
 export const meta: MetaFunction = () => {
   return [{ title: `Home | ${siteTitle}` }];
 }
 
-export default function Home() {
+export function loader() {
+  return {
+    products: [],
+    posts: [],
+    ideas: [],
+    jobs: [],
+    teams: [],
+  };
+}
+
+export default function Home({ loaderData }: Route.ComponentProps) {
   return (
     <div className="px-5 w-full flex flex-col gap-10">
       {/* Product Section */}
-      <div className="grid grid-cols-3 gap-4">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-10">
+        <div className="p-2">
           <h2 className="text-4xl font-semibold tracking-tight leading-tight">
             Today's Products
           </h2>
@@ -46,8 +54,8 @@ export default function Home() {
 
       <Separator />
       {/* Post Section */}
-      <div className="grid grid-cols-3 gap-4">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+        <div className="p-2">
           <h2 className="text-4xl font-semibold tracking-tight leading-tight">
             Latest Discussions
           </h2>
@@ -74,8 +82,8 @@ export default function Home() {
 
        <Separator />
       {/* Jobs Section */}
-      <div className="grid grid-cols-3 gap-4">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+        <div className="p-2">
           <h2 className="text-4xl font-semibold tracking-tight leading-tight">
             Ideas 
           </h2>
@@ -101,8 +109,8 @@ export default function Home() {
 
         <Separator />
       {/* Idea Section */}
-      <div className="grid grid-cols-3 gap-4">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+        <div className="p-2">
           <h2 className="text-4xl font-semibold tracking-tight leading-tight">
             Ideas 
           </h2>
@@ -131,8 +139,8 @@ export default function Home() {
 
       <Separator />
       {/* Idea Section */}
-      <div className="grid grid-cols-3 gap-4">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+        <div className="p-2">
           <h2 className="text-4xl font-semibold tracking-tight leading-tight">
             Teams 
           </h2>
@@ -156,6 +164,6 @@ export default function Home() {
         ))}
       </div>
     </div>
-  )
+  );
 }
  
