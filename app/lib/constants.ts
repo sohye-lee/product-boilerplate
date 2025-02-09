@@ -1,4 +1,4 @@
-export const siteTitle = "Create";
+export const siteTitle = "Cre8";
 export const siteDescription =
   "Create is a platform for creating and sharing ideas.";
 export const siteUrl = "https://create.com";

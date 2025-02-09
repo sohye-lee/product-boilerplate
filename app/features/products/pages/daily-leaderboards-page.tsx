@@ -1,11 +1,12 @@
 import { Hero } from "~/common/components/hero";
 import { DateTime } from "luxon";
 import type { Route } from "./+types/daily-leaderboards-page";
-import { data, isRouteErrorResponse, Link, type MetaFunction,  } from "react-router";
+import { data, isRouteErrorResponse, Link  } from "react-router";
 import { z } from "zod";
 import { Button } from "~/common/components/ui/button";
 import { ProductCard } from "../components/product-card";
 import Pagination from "~/common/components/pagination";
+import { siteTitle } from "~/lib/constants";
 
 const paramsSchema = z.object({
   year: z.coerce.number(),
@@ -13,9 +14,10 @@ const paramsSchema = z.object({
   day: z.coerce.number(),
 });
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = ({ params }) => {
+  const date = DateTime.fromObject({ year: Number(params.year), month: Number(params.month), day: Number(params.day) }).setZone("America/New_York"); 
   return [
-    { title: "Daily Leaderboards | Product Hunt Clone" },
+    { title: `Daily Leaderboards for ${date.toLocaleString(DateTime.DATE_MED)} | ${siteTitle}` },
     { name: "description", content: "Top products by day" },
   ];
 };
@@ -41,8 +43,7 @@ export default function DailyLeaderboardsPage({ loaderData }: Route.ComponentPro
   const previousDate = date.minus({ day: 1 });
   const nextDate = date.plus({ day: 1 });
   const today = DateTime.now().toLocal().startOf("day");
-  console.log('date: ', date);
-  console.log("today: ", DateTime.now().toLocal().startOf("day"));
+  
   return (
     <div className="flex flex-col gap-5">
       <Hero title={`Best Products of ${dateLocal}`} description="The most popular products of the day." />
@@ -56,10 +57,12 @@ export default function DailyLeaderboardsPage({ loaderData }: Route.ComponentPro
       </div>
       <div className="gap-5 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 8 }).map((_, index) => (
-          <ProductCard id={index.toString()} name={`Product ${index}`} description="Description 1" commentsCount={10} upvotesCount={10} viewsCount={10} />
+          <ProductCard key={index} id={index.toString()} name={`Product ${index}`} description="Description 1" commentsCount={10} upvotesCount={10} viewsCount={10} />
         ))}
       </div>
-      <Pagination totalPages={10} />
+      <div className="flex justify-center items-center mt-8">
+        <Pagination totalPages={10} />
+      </div>
     </div>
   );
 } 

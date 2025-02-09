@@ -2,10 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Queens";
+  src: url("/public/fonts/Queens_W-Regular.woff2") format("woff2"),
+       url("/public/fonts/Queens_W-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Queens";
+  src: url("/public/fonts/Queens_W-RegularItalic.woff2") format("woff2"),
+       url("/public/fonts/Queens_W-RegularItalic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Queens Medium";
+  src: url("/public/fonts/Queens_W-Medium.woff2") format("woff2"),
+       url("/public/fonts/Queens_W-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Queens Medium Italic";
+  src: url("/public/fonts/Queens_W-MediumItalic.woff2") format("woff2"),
+       url("/public/fonts/Queens_W-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Queens Light";
+  src: url("/public/fonts/Queens_W-Light.woff2") format("woff2"),
+       url("/public/fonts/Queens_W-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Queens Light Italic";
+  src: url("/public/fonts/Queens_W-LightItalic.woff2") format("woff2"),
+       url("/public/fonts/Queens_W-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+}
+
 html,
 body {
   @apply bg-white dark:bg-gray-950;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+
+  h1, h2, h3, h4, h5, h6, label {
+    font-family: 'Belleza', sans-serif;
+    /* letter-spacing: -0.5px; */
+    font-weight: 500;
+    text-transform: uppercase;
+  }
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;

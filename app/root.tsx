@@ -11,6 +11,7 @@ import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 import Navigation from "./common/components/navigation";
 import { Settings } from "luxon";
+import Footer from "./common/components/footer";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -21,7 +22,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Belleza&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Onest:wght@100..900&family=Ovo&family=Space+Grotesk:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap",
   },
   { rel: "stylesheet", href: stylesheet },
 ];
@@ -49,9 +50,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (<div className="flex flex-col min-h-screen pt-16">
     <Navigation isLoggedIn={true} hasNotifications={true} hasMessages={true} />
-    <div className="max-w-screen-2xl w-full mx-auto lg:pt-4 px-4">
+    <div className="max-w-screen-2xl w-full mx-auto lg:pt-4 px-4 pb-16">
       <Outlet />
     </div>
+    <Footer />
   </div>)
 }
 

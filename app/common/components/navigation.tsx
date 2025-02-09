@@ -14,6 +14,7 @@ import { cn } from "~/lib/utils";
 import { Button } from "./ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@common/components/ui/avatar";
 import { BarChart, BarChart2Icon, BarChart3, BellIcon, BriefcaseIcon, LogOutIcon, MessageCircleIcon, PackageIcon, SettingsIcon, UserIcon } from "lucide-react";
+import { siteTitle } from "~/lib/constants";
 const menus = [
     {
         label: "Home",
@@ -158,7 +159,7 @@ export default function Navigation({ isLoggedIn, hasNotifications, hasMessages }
         <nav className="flex items-center justify-between h-16 backdrop-blur fixed top-0 left-0 w-full z-50 bg-background/50">
             <div className="max-w-screen-2xl w-full mx-auto px-5 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                    <Link to="/" className="text-lg font-bold tracking-tighter" id="header-logo">create</Link>
+                    <Link to="/" className="text-lg font-bold tracking-tighter" id="header-logo">{siteTitle}</Link>
                     <Separator orientation="vertical" className="h-6" />
                     <NavigationMenu>
                         <NavigationMenuList>

@@ -7,7 +7,7 @@ export default {
     extend: {
       fontFamily: {
         sans: [
-          'Inter"',
+          'DM Sans"',
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
@@ -16,6 +16,7 @@ export default {
           'Segoe UI Symbol"',
           'Noto Color Emoji"',
         ],
+        serif: ["Belleza", "ui-serif", "Georgia"],
       },
       borderRadius: {
         lg: "var(--radius)",
