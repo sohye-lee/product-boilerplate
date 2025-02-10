@@ -15,6 +15,7 @@ import {
 } from "~/common/components/ui/select"
 import SelectBox from "~/common/components/select-box";
 import { useState } from "react";
+import type { DateRange } from "react-day-picker";
 
 
 
@@ -39,10 +40,11 @@ export default function SubmitPage({ loaderData }: Route.ComponentProps) {
       const file = e.target.files[0];
       setIcon(URL.createObjectURL(file));
     }
-     
   };
+
+  
   return (
-    <div className="container mx-auto px-4 py-8 max-w-screen-lg flex flex-col gap-8">
+    <div className="mx-auto px-4 max-w-screen-lg flex flex-col gap-8">
       <Hero title="Submit Your Product" description="Submit your product to the community" /> 
       <Form>
         <div className="gap-4 grid grid-cols-2">
@@ -56,7 +58,7 @@ export default function SubmitPage({ loaderData }: Route.ComponentProps) {
           </div>
           <div className="flex flex-col space-y-2">
             <Label className="text-lg">
-              Icon
+              Icon 
             </Label>
               <small className="text-muted-foreground">
                 This is the icon of your product

@@ -24,7 +24,7 @@ export default function LeaderboardsPage({ loaderData }: Route.ComponentProps) {
   return (
     <div className="flex flex-col gap-10">
       <Hero 
-        title="Leaderboards"
+        title="Leaderboards" 
         description="See the top products in the community"
       />
 

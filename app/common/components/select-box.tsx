@@ -21,7 +21,7 @@ export default function SelectBox({ label, description, options, placeholder, re
         setOpen(true);
     }
     return (
-    <div className="flex flex-col gap-2 ">
+    <div className="flex flex-col gap-2 w-full">
       <Label className="text-xl font-medium" onClick={() => setOpen(true)}>{label}{required && <sup className="text-red-500">*</sup>}</Label>
           {description && <p className="text-sm text-muted-foreground">{description}</p>}
           <Select open={open} onOpenChange={setOpen} required={required}>
