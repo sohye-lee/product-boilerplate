@@ -7,7 +7,7 @@ import { PostCard } from "@features/community/components/post-card";
 import { IdeaCard } from "~/features/ideas/components/idea-card";
 import { JobCard } from "~/features/jobs/components/job-card";
 import { TeamCard } from "~/features/teams/components/team-card";
-import type { Route } from "~/+types/home";
+import type { Route } from "./+types/home-page";
 
 export const meta: MetaFunction = () => {
   return [{ title: `Home | ${siteTitle}` }];
@@ -81,7 +81,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       </div>
 
        <Separator />
-      {/* Jobs Section */}
+      {/* Ideas Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
         <div className="p-2">
           <h2 className="text-4xl font-semibold tracking-tight leading-tight">
@@ -108,7 +108,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       </div>
 
         <Separator />
-      {/* Idea Section */}
+      {/* Jobs Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
         <div className="p-2">
           <h2 className="text-4xl font-semibold tracking-tight leading-tight">
@@ -128,7 +128,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             companyName="Tesla"
             companyLogoUrl="https://github.com/facebook.png"
             companyHq="Palo Alto, CA"
-            title="Software Engineer"
+            jobTitle="Software Engineer"
             timeAgo="12 hours ago"
             employmentType="Full-time"
             salary="$100,000 - $120,000"

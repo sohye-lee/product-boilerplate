@@ -53,7 +53,7 @@ export default function SubmitPage({ loaderData }: Route.ComponentProps) {
             <InputBox label="Title" name="title" required={true} placeholder="Title" description="The title of your product" />
             <InputBox label="Tagline" name="tagline" required={false} placeholder="Concise description of your product" description="A short description of your product, max 60 characters" />
             <InputBox label="URL" name="url" required={true} placeholder="https://www.example.com" description="The URL of your product" />
-            <InputBox label="Description" name="description" type="textarea" placeholder="Description of your product" description="A detailed description of your product" />
+            <InputBox label="Description" name="description" textarea={true} placeholder="Description of your product" description="A detailed description of your product" />
             <SelectBox label="Category" placeholder="Select a category" name="category" required={true} options={categories} description="The category of your product" />
           </div>
           <div className="flex flex-col space-y-2">

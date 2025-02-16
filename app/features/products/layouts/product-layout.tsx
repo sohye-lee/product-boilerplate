@@ -1,8 +1,8 @@
 import { Button, buttonVariants } from "~/common/components/ui/button";
-import { Link, NavLink, Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 import type { Route } from "./+types/product-layout";
 import { siteTitle } from "~/lib/constants";
-import { ChevronUp, Star, StarHalf } from "lucide-react";
+import { ChevronUp, Star } from "lucide-react";
 import { cn } from "~/lib/utils";
 
 export function meta({}: Route.MetaFunction) {

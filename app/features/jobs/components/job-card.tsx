@@ -15,7 +15,7 @@ interface JobCardProps {
   companyName: string;
     companyLogoUrl: string;
     companyHq: string;
-  title: string;
+  jobTitle: string;
   timeAgo: string;
   employmentType: string;
   salary: string;
@@ -25,9 +25,9 @@ interface JobCardProps {
 export function JobCard({
   id,
   companyName,
-    companyLogoUrl,
+  companyLogoUrl,
   companyHq,
-  title,
+  jobTitle,
   timeAgo,
   employmentType,
   salary,
@@ -45,7 +45,7 @@ export function JobCard({
               <span className="text-sm text-muted-foreground">{timeAgo}</span>
             </div>
           </div>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle>{jobTitle}</CardTitle>
         </CardHeader>
         <CardContent className="flex items-center gap-2">
           <Badge variant="outline">{employmentType}</Badge>

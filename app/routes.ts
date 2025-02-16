@@ -31,11 +31,11 @@ export default [
       route(
         "/:period",
         "features/products/pages/leaderboards-redirection-page.tsx"
-      ),
+      )
     ]),
     ...prefix("categories", [
       index("features/products/pages/categories-page.tsx"),
-      route("/:category", "features/products/pages/category-page.tsx"),
+      route("/:category", "features/products/pages/category-page.tsx")
     ]),
     route("/search", "features/products/pages/search-page.tsx"),
     route("/submit", "features/products/pages/submit-page.tsx"),
@@ -45,24 +45,29 @@ export default [
       layout("features/products/layouts/product-layout.tsx", [
         route("/overview", "features/products/pages/product-overview-page.tsx"),
         ...prefix("/reviews", [
-          index("features/products/pages/product-reviews-page.tsx"),
-        ]),
-      ]),
-    ]),
+          index("features/products/pages/product-reviews-page.tsx")
+        ])
+      ])
+    ])
+  ]),
+  ...prefix("ideas", [
+    index("features/ideas/pages/ideas-page.tsx"),
+    route("/:ideaId", "features/ideas/pages/idea-page.tsx")
   ]),
   ...prefix("jobs", [
+    // layout("features/jobs/layout/jobs-layout.tsx", [
     index("features/jobs/pages/jobs-page.tsx"),
     route("/submit", "features/jobs/pages/submit-job-page.tsx"),
-    route("/:job", "features/jobs/pages/job-page.tsx"),
+    route("/:jobId", "features/jobs/pages/job-page.tsx")
+    // ])
   ]),
   ...prefix("teams", [
     index("features/teams/pages/teams-page.tsx"),
     route("/:team", "features/teams/pages/team-page.tsx"),
-    route("create", "features/teams/pages/create-team-page.tsx"),
+    route("create", "features/teams/pages/create-team-page.tsx")
   ]),
   ...prefix("community", [
     index("features/community/pages/comunity-page.tsx"),
-    route("/create", "features/community/pages/create-post-page.tsx"),
-  ]),
-  ...prefix("ideas", [index("features/ideas/pages/ideas-page.tsx")]),
+    route("/create", "features/community/pages/create-post-page.tsx")
+  ])
 ] satisfies RouteConfig;
