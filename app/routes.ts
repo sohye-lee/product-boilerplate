@@ -68,6 +68,21 @@ export default [
   ]),
   ...prefix("community", [
     index("features/community/pages/comunity-page.tsx"),
-    route("/create", "features/community/pages/create-post-page.tsx")
+    route("/:postId", "features/community/pages/post-page.tsx"),
+    route("/new", "features/community/pages/create-post-page.tsx")
+  ]),
+  ...prefix("auth", [
+    layout("features/auth/layouts/auth-layout.tsx", [
+      route("/join", "features/auth/pages/join-page.tsx"),
+      route("/login", "features/auth/pages/login-page.tsx"),
+      ...prefix("/otp", [
+        route("/start", "features/auth/pages/otp-start-page.tsx"),
+        route("/complete", "features/auth/pages/otp-complete-page.tsx")
+      ]),
+      ...prefix("social/:provider", [
+        route("/start", "features/auth/pages/social-start-page.tsx"),
+        route("/complete", "features/auth/pages/social-complete-page.tsx")
+      ])
+    ])
   ])
 ] satisfies RouteConfig;

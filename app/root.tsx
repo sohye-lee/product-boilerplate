@@ -5,6 +5,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -39,7 +40,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <main>
+          {children}
+        </main>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -48,12 +51,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return (<div className="flex flex-col min-h-screen pt-16">
-    <Navigation isLoggedIn={true} hasNotifications={true} hasMessages={true} />
-    <div className="max-w-screen-2xl w-full mx-auto lg:pt-4 px-4 pb-16">
+  const { pathname } = useLocation();
+  return (<div className={`flex flex-col min-h-screen ${pathname.includes("/auth") ? "pt-0" : "pt-16"}`}>
+    {!pathname.includes("/auth") && <Navigation isLoggedIn={true} hasNotifications={true} hasMessages={true} />}
+    <div className={`${pathname.includes("/auth") ? "pb-0" : "pb-16 px-4 max-w-screen-2xl"}  w-full mx-auto`}>
       <Outlet />
     </div>
-    <Footer />
+    {!pathname.includes("/auth") && <Footer />}
   </div>)
 }
 
@@ -78,15 +82,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       <div className="w-full h-[calc(100vh-6rem)] min-h-[36rem]  md:h-[calc(100vh-10rem)] lg:min-h-[48rem]  p-10 flex justify-center items-center text-lg text-center bg-gradient-to-b from-gray-900 to-purple-600 text-white rounded-xl">
         <h1 className="text-2xl font-bold">{message}</h1>
         <p className="text-md">{details}</p>
-  
       </div>
-      {/* <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )} */}
     </main>
   );
 }
