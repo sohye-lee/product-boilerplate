@@ -66,7 +66,7 @@ export default function CommunityPage({ loaderData }: Route.ComponentProps) {
             </DropdownMenu>
           </div>
             <Button size="default" className="flex items-center gap-2" asChild>
-              <Link to="/community/new">
+              <Link to="/community/submit">
                 <PlusIcon className="size-4" />
                 <span>Create Post</span>
               </Link>

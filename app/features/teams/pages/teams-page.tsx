@@ -1,14 +1,16 @@
-import type { MetaFunction } from "react-router";
+import { siteTitle } from "~/lib/constants";
 import type { Route } from "./+types/team-page";
+import { Hero } from "~/common/components/hero";
+import { TeamCard } from "../components/team-card";
 
 interface LoaderData {
   // Define your loader data type here
 }
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
   return [
-    { title: "Teams | Product Hunt Clone" },
-    { name: "description", content: "Product Hunt for Teams" },
+    { title: `Teams | ${siteTitle}` },
+    { name: "description", content: "The best place to find and join teams" },
   ];
 };
 
@@ -20,8 +22,21 @@ export function loader({ request }: Route.LoaderArgs) {
 
 export default function TeamsPage({ loaderData }: Route.ComponentProps) {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold">Teams</h1>
+   <div className="flex flex-col gap-10">
+      <Hero title="Teams" description="Find your next team" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {Array.from({ length: 12 }).map((_, index) => (
+          <TeamCard
+            key={index}
+            id={index.toString()}
+            leaderUsername="Sohye"
+            leaderAvatar="https://github.com/inthetiger.png"
+            leaderInitials="SK"
+            roles={["React Developer", "Backend Developer", "Product Manager"]}
+            projectDescription="a social media platform"
+          />
+        ))}
+      </div>
     </div>
   );
 } 

@@ -128,7 +128,7 @@ const menus = [
             },
             {
                 label: "Create a Post",
-                path: "/community/create",
+                path: "/community/submit",
                 description: "Create a new post in our community"
             },
         ]
@@ -232,15 +232,15 @@ export default function Navigation({ isLoggedIn, hasNotifications, hasMessages }
                                 </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild>
-                                <Link to="/my/jobs" className=" ">
+                                <Link to="/my/dashboard/ideas" className=" ">
                                     <BriefcaseIcon className="size-4" />
-                                    My Jobs
+                                    My Ideas
                                 </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild>
-                                <Link to="/my/products" className=" ">
+                                <Link to="/my/dashboard/products/:productId" className=" ">
                                     <PackageIcon className="size-4" />
-                                    My Products
+                                    My Product
                                 </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild>

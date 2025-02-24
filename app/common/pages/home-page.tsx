@@ -76,6 +76,8 @@ export default function Home({ loaderData }: Route.ComponentProps) {
               authorInitials="SK"
               category="Category"
               timeAgo="12 hours ago"
+              votesCount={123}
+              // commentsCount={10}
             />
           ))}
       </div>
