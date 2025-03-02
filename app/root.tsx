@@ -52,12 +52,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const { pathname } = useLocation();
-  return (<div className={`flex flex-col min-h-screen ${pathname.includes("/auth") ? "pt-0" : "pt-16"}`}>
+  return (<div className={`flex flex-col min-h-screen ${pathname.includes("/auth")  ? "pt-0" : "pt-16"}`}>
     {!pathname.includes("/auth") && <Navigation isLoggedIn={true} hasNotifications={true} hasMessages={true} />}
-    <div className={`${pathname.includes("/auth") ? "pb-0" : "pb-16 px-4 max-w-screen-2xl"}  w-full mx-auto`}>
+    <div className={`${pathname.includes("/auth") || pathname.includes("/messages") ? "pb-0" : "pb-16 px-4 max-w-screen-2xl"}  w-full mx-auto`}>
       <Outlet />
     </div>
-    {!pathname.includes("/auth") && <Footer />}
+    {!pathname.includes("/auth") && !pathname.includes("/messages") && <Footer />}
   </div>)
 }
 

@@ -38,7 +38,7 @@ export default function ProductOverviewPage({ params, loaderData }: Route.Compon
     const { product } = loaderData;
     const { productId } = params;
     return (
-        <div className="flex flex-col gap-12 max-w-screen-md mx-auto">
+        <div className="flex flex-col gap-12 max-w-screen-md mx-auto pt-8">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-5">
                     <div className="aspect-square w-24 h-24 rounded-sm bg-primary/20"></div>
