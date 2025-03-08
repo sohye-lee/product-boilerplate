@@ -45,9 +45,9 @@ export default function PostPage({ loaderData, params }: Route.ComponentProps) {
   const { postId } = params;
 
   return (
-      <div className="grid grid-cols-8 gap-12 items-start pt-10 max-w-screen-lg mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-8 gap-12 items-start pt-10 max-w-screen-lg mx-auto">
         {/* Post Details */}
-        <div className="flex flex-col gap-8 col-span-5">
+        <div className="flex flex-col gap-8 col-span-1 lg:col-span-5">
           {/* Breadcrumb */}
           <Breadcrumb>
             <BreadcrumbList>
@@ -65,7 +65,7 @@ export default function PostPage({ loaderData, params }: Route.ComponentProps) {
             </BreadcrumbList>
           </Breadcrumb>
           {/* Breadcrumb Ends */}
-          <div className="flex w-full gap-5">
+          <div className="flex flex-col lg:flex-row w-full gap-5">
             {/* LEFT */}
             <div>
               <UpvoteButton votesCount={10} />
@@ -130,7 +130,7 @@ export default function PostPage({ loaderData, params }: Route.ComponentProps) {
         {/* Job Details Ends */}
 
         {/* SIDEBAR */}
-        <aside className="sticky top-20 sidebar border col-span-3 border-gray-200 p-4 rounded-xl space-y-8">
+        <aside className="sticky top-20 sidebar border col-span-1 lg:col-span-3 border-gray-200 p-4 rounded-xl space-y-8">
           <div className="flex gap-3 items-center">
             <Avatar className="size-10 rounded-full overflow-hidden">
               <AvatarImage src="https://github.com/shadcn.png" />

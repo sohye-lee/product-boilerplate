@@ -50,7 +50,7 @@ export default function ProfileLayout({ loaderData, params }: Route.ComponentPro
   const { username } = params;
    return (
         <div className="flex flex-col gap-12 max-w-screen-md mx-auto pt-8">
-            <div className="flex items-end justify-between">
+            <div className="flex gap-4 flex-col lg:flex-row lg:items-end justify-between">
                 <div className="flex items-center gap-5">
                     <Avatar className="w-20 h-20">
                         <AvatarImage src="https://github.com/shadcn.png" />

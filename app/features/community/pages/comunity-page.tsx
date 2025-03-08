@@ -34,8 +34,8 @@ export default function CommunityPage({ loaderData }: Route.ComponentProps) {
   return (
      <div className="flex flex-col gap-10">
       <Hero title="Community" description="Join discussions with makers and tech enthusiasts" />
-      <div className="grid grid-cols-8 gap-10 items-start">
-        <div className="col-span-6">
+      <div className="grid grid-cols-1 lg:grid-cols-8 gap-10 items-start">
+        <div className="col-span-1 lg:col-span-6">
           <div className="flex justify-between items-center gap-3 mb-5">
           <div className="flex items-center gap-3">
             <DropdownMenu>
@@ -89,7 +89,7 @@ export default function CommunityPage({ loaderData }: Route.ComponentProps) {
           ))} 
         </div>
         </div>
-        <aside className="sticky top-20 sidebar border col-span-2 border-gray-200 p-4 rounded-xl flex flex-col gap-5">
+        <aside className="sticky top-20 sidebar border col-span-1 lg:col-span-2 border-gray-200 p-4 rounded-xl flex flex-col gap-5">
           <div className="flex flex-col items-start space-y-2">
             <h2 className="text-2xl font-bold mb-3">Topics</h2>
             {["AI Tools", "Software", "Machine Learning", "Front End", "Dev Tools", "Backend", "Productivity"].map((category) => (

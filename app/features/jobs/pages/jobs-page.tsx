@@ -37,9 +37,9 @@ export default function JobsPage({ loaderData, params }: Route.ComponentProps) {
   return (
     <div className="flex flex-col gap-10">
       <Hero title="Jobs" description="Find your next job" />
-      <div className="grid grid-cols-8 gap-10 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-8 gap-10 items-start">
 
-        <div className="col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="col-span-1 lg:col-span-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Array.from({ length: 12 }).map((_, index) => (
             <JobCard
             key={index}
@@ -56,7 +56,7 @@ export default function JobsPage({ loaderData, params }: Route.ComponentProps) {
           ))}
         </div>
 
-        <aside className="sticky top-20 sidebar border col-span-2 border-gray-200 p-4 rounded-xl flex flex-col gap-5">
+        <aside className="sticky top-20 sidebar border col-span-1 lg:col-span-2 border-gray-200 p-4 rounded-xl flex flex-col gap-5">
           <div className="space-y-2">
             <div className="font-serif uppercase text-xl font-medium text-gray-500">
               Type

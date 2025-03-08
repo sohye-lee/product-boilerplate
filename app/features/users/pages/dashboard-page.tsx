@@ -1,5 +1,14 @@
+import { Label, Line } from "recharts";
+import { CartesianGrid, XAxis } from "recharts";
+import { LineChart } from "recharts";
 import type { Route } from "./+types/dashboard-page";
-
+import {
+  type ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@common/components/ui/chart"
+import { Card, CardContent, CardHeader, CardTitle } from "~/common/components/ui/card";
 interface DashboardData {
   products: Array<{
     id: string;
@@ -31,23 +40,67 @@ export const meta: Route.MetaFunction = () => {
   ];
 };
 
+const chartData = [
+  { month: "January", views: 186 },
+  { month: "February", views: 305 },
+  { month: "March", views: 237 },
+  { month: "April", views: 73 },
+  { month: "May", views: 209 },
+  { month: "June", views: 214 },
+]
+
+const chartConfig = {
+  views: {
+    label: "Views",
+    color: "hsl(var(--chart-2))",
+  },
+} satisfies ChartConfig;
+
 export default function DashboardPage({ loaderData }: Route.ComponentProps) {
-  const { products, ideas } = loaderData as unknown as DashboardData;
 
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
       
-      <div className="grid gap-8 md:grid-cols-2">
-        <section>
-          <h2 className="text-2xl font-semibold mb-4">Your Products</h2>
-          {/* Products list */}
-        </section>
+      <div className="">
+        <Card className="w-full md:w-1/2">
+          <CardHeader>
+            <CardTitle>Profile Views by Month</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer config={chartConfig}>
+          <LineChart
+            accessibilityLayer
+            data={chartData}
+            margin={{
+              left: 12,
+              right: 12,
+            }}
+          >
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Line
+              dataKey="views"
+              type="natural"
+              stroke="var(--color-views)"
+              strokeWidth={2}
+              dot={false}
+            />
+          </LineChart>
+        </ChartContainer>
+          </CardContent>
+        </Card>
         
-        <section>
-          <h2 className="text-2xl font-semibold mb-4">Your Ideas</h2>
-          {/* Ideas list */}
-        </section>
       </div>
     </div>
   );

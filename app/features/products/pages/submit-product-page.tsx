@@ -47,7 +47,7 @@ export default function SubmitPage({ loaderData }: Route.ComponentProps) {
     <div className="mx-auto px-4 max-w-screen-lg flex flex-col gap-8">
       <Hero title="Submit Your Product" description="Submit your product to the community" /> 
       <Form>
-        <div className="gap-4 grid grid-cols-2">
+        <div className="gap-4 grid grid-cols-1 lg:grid-cols-2">
 
           <div className="flex flex-col gap-6">
             <InputBox label="Title" name="title" required={true} placeholder="Title" description="The title of your product" />

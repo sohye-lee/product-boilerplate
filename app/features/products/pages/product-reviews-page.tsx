@@ -46,9 +46,9 @@ export default function ProductReviewsPage({ loaderData }: Route.ComponentProps)
     return (
     <Dialog>
         <div className=" py-8">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex flex-col lg:flex-row justify-between lg:items-center mb-6 gap-4">
                 <h3 className="text-2xl font-bold">Product Reviews</h3>
-                <DialogTrigger>
+                <DialogTrigger className="flex justify-start lg:justify-end">
                     <Button>Write a Review</Button>
                 </DialogTrigger>
             </div>

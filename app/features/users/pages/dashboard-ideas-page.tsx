@@ -1,3 +1,4 @@
+import { IdeaCard } from "~/features/ideas/components/idea-card";
 import type { Route } from "./+types/dashboard-ideas-page";
 
 interface IdeaData {
@@ -26,19 +27,19 @@ export default function DashboardIdeasPage({ loaderData }: Route.ComponentProps)
   const { ideas } = loaderData as unknown as { ideas: IdeaData[] };
 
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8">My Ideas</h1>
-      
-      <div className="space-y-4">
-        {ideas.map((idea) => (
-          <div key={idea.id} className="border rounded-lg p-4">
-            <h2 className="text-xl font-semibold">{idea.title}</h2>
-            <p className="text-gray-600">{idea.description}</p>
-            <div className="mt-2 flex items-center gap-2">
-              <span className="text-sm text-gray-500">{idea.status}</span>
-              <span className="text-sm text-gray-500">{idea.createdAt}</span>
-            </div>
-          </div>
+    <div className="space-y-5">
+      <h1 className="text-3xl font-bold">Claimed Ideas</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+       {Array.from({ length: 9 }).map((_, index) => (
+          <IdeaCard
+            key={index}
+            id={index.toString()}
+            title="A new way to build products with AI in a startup with no code. Is this possible?"
+            viewCount={123}
+            timeAgo="12 hours ago"
+            likesCount={10}
+            claimed={false}
+          />
         ))}
       </div>
     </div>
