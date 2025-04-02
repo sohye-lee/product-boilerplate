@@ -4,7 +4,7 @@ import { Hero } from "~/common/components/hero";
 import InputBox from "~/common/components/input-box";
 import SelectBox from "~/common/components/select-box";
 import { Button } from "~/common/components/ui/button";
-
+import { PRODUCT_STAGES } from "../constants";
 interface LoaderData {
   // Define your loader data type here
 }
@@ -29,7 +29,7 @@ export default function CreateTeamPage({ loaderData }: Route.ComponentProps) {
       <Form className="space-y-5">
    
         <InputBox label="What is your product?" name="name" required={true} placeholder="i.e. Product Hunt Clone" description="(Max 20 characters)" maxLength={20} />
-        <SelectBox label="What is the stage of your product?" placeholder="Select" name="jobType" required={true} options={[{label: "Idea", value: "idea"}, {label: "Prototype", value: "prototype"}, {label: "MVP", value: "mvp"}, {label: "Product", value: "product"}]} description="Select the stage of your product" />
+        <SelectBox label="What is the stage of your product?" placeholder="Select" name="jobType" required={true} options={PRODUCT_STAGES} description="Select the stage of your product" />
         <InputBox label="What is the size of your team?" name="size" max={100} min={2} type="number" placeholder="0" description="(1-100)" />
         <InputBox label="What much equity are you willing to give?" name="equity" max={100} min={2} type="number" placeholder="0" description="(1-100)" />
         <InputBox label="What roles are you looking for" name="roles" placeholder="React Developer, UI/UX Designer, etc." description="(comma separated)" />

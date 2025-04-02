@@ -1,0 +1,1 @@
+ALTER TABLE "jobs" ALTER COLUMN "responsability" SET NOT NULL;
