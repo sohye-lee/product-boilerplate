@@ -5,9 +5,17 @@ import {
   pgTable,
   text,
   timestamp,
-  uuid
+  uuid,
+  bigint,
+  primaryKey,
+  boolean
 } from "drizzle-orm/pg-core";
+import { products } from "../products/schema";
+import { posts } from "../community/schema";
 
+////////////////////////////////////////////////////////////
+// USERS
+////////////////////////////////////////////////////////////
 const users = pgSchema("auth").table("users", {
   id: uuid("id").primaryKey()
 });
@@ -47,5 +55,78 @@ export const follows = pgTable("follows", {
   following_id: uuid()
     .references(() => profiles.profile_id, { onDelete: "cascade" })
     .notNull(),
+  created_at: timestamp().notNull().defaultNow()
+});
+
+////////////////////////////////////////////////////////////
+// NOTIFICATIONS
+////////////////////////////////////////////////////////////
+export const notification_type = pgEnum("notification_type", [
+  "follow",
+  "review",
+  "reply",
+  "mention",
+  "like",
+  "message"
+]);
+
+export const notifications = pgTable("notifications", {
+  notification_id: bigint({ mode: "number" })
+    .primaryKey()
+    .generatedAlwaysAsIdentity(),
+  source_id: uuid().references(() => profiles.profile_id, {
+    onDelete: "cascade"
+  }),
+  product_id: bigint({ mode: "number" }).references(() => products.product_id, {
+    onDelete: "cascade"
+  }),
+  post_id: bigint({ mode: "number" }).references(() => posts.post_id, {
+    onDelete: "cascade"
+  }),
+  target_id: uuid()
+    .references(() => profiles.profile_id, { onDelete: "cascade" })
+    .notNull(),
+  type: notification_type().notNull(),
+  created_at: timestamp().notNull().defaultNow()
+});
+
+////////////////////////////////////////////////////////////
+// MESSAGES
+////////////////////////////////////////////////////////////
+export const message_rooms = pgTable("message_rooms", {
+  message_room_id: bigint({ mode: "number" })
+    .primaryKey()
+    .generatedAlwaysAsIdentity(),
+  created_at: timestamp().notNull().defaultNow()
+});
+
+export const message_room_members = pgTable(
+  "message_room_members",
+  {
+    message_room_id: bigint({ mode: "number" })
+      .references(() => message_rooms.message_room_id, { onDelete: "cascade" })
+      .notNull(),
+    profile_id: uuid()
+      .references(() => profiles.profile_id, { onDelete: "cascade" })
+      .notNull(),
+    created_at: timestamp().notNull().defaultNow()
+  },
+  (table) => [
+    primaryKey({ columns: [table.message_room_id, table.profile_id] })
+  ]
+);
+
+export const messages = pgTable("messages", {
+  message_id: bigint({ mode: "number" })
+    .primaryKey()
+    .generatedAlwaysAsIdentity(),
+  message_room_id: bigint({ mode: "number" })
+    .references(() => message_rooms.message_room_id, { onDelete: "cascade" })
+    .notNull(),
+  sender_id: uuid()
+    .references(() => profiles.profile_id, { onDelete: "cascade" })
+    .notNull(),
+  content: text().notNull(),
+  seen: boolean().default(false),
   created_at: timestamp().notNull().defaultNow()
 });

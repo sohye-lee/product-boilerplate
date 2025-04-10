@@ -6,21 +6,21 @@ import { cn } from "~/lib/utils"
 import { ArrowUpIcon, ChevronUpIcon } from "lucide-react"
 
 interface PostCardProps {
-  id: string
+  id: number
   title: string
   authorName: string
   authorAvatarUrl: string
   authorInitials: string
-  category: string
-  timeAgo: string
+  topic: string
+  createdAt: string
   expanded?: boolean
   votesCount: number
 }
 
-export function PostCard({ id, title, authorName, authorAvatarUrl, authorInitials, category, timeAgo, expanded = false, votesCount = 0 }: PostCardProps) {
+export function PostCard({ id, title, authorName, authorAvatarUrl, authorInitials, topic, createdAt, expanded = false, votesCount = 0 }: PostCardProps) {
   return (
     <Link to={`/community/${id}`}>
-      <Card className={cn("bg-transparent hover:bg-card/50 transition-colors duration-300 h-full min-h-[170px]", expanded && 'bg-card/50 flex flex-row justify-between')}> 
+      <Card className={cn("bg-transparent hover:bg-purple-50/50 transition-colors duration-300 h-full min-h-[170px]",  ' flex flex-col justify-between')}> 
         <CardHeader className={cn("flex flex-row gap-2 ", expanded ? 'pb-0' : ' items-center')}>
           <Avatar className="size-14">
             <AvatarImage src={authorAvatarUrl} />
@@ -30,12 +30,12 @@ export function PostCard({ id, title, authorName, authorAvatarUrl, authorInitial
             <CardTitle>{title}</CardTitle>
             <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <span>{authorName}</span>·
-              <span>{category}</span>·
-              <span>{timeAgo}</span>
+              <span>{topic}</span>·
+              <span>{createdAt}</span>
             </div>
           </div>
         </CardHeader>
-        {!expanded && <CardFooter className={ "flex items-center justify-end" }>
+        {/* {!expanded && <CardFooter className={ "flex items-center justify-end" }>
           <Button variant="link">
             <Link to={`/community/${id}`}>Reply &rarr;</Link>
           </Button>
@@ -49,7 +49,19 @@ export function PostCard({ id, title, authorName, authorAvatarUrl, authorInitial
             </Link>
           </Button>
         </CardFooter>
-        }
+        } */}
+
+        <CardFooter className={"flex items-end justify-end gap-2"}>
+          <Button variant="outline" className="flex items-center gap-1 p-2 h-auto text-xs min-h-3 min-w-4" asChild>
+            <Link to={`/community/${id}`}>Reply</Link>
+          </Button>
+          <Button variant="outline" className="flex items-center p-2 h-auto text-xs min-h-3 min-w-4" asChild>
+            <Link to={`/community/${id}`} className=" items-center gap-1  ">
+              <ChevronUpIcon className="size-4" />
+              <span>{votesCount}</span>
+            </Link>
+          </Button>
+        </CardFooter>
       </Card>
     </Link>
   )

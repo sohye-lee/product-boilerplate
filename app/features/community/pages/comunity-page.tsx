@@ -6,11 +6,10 @@ import { Button } from "~/common/components/ui/button";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "~/common/components/ui/dropdown-menu";
 import { ChevronDownIcon, PlusIcon } from "lucide-react";
 import { PERIOD_OPTIONS, SORT_OPTIONS } from "../constants";
-import { capitalize, cn } from "~/lib/utils";
+import { cn } from "~/lib/utils";
+import { getPosts, getTopics } from "../queries";
+import { DateTime } from "luxon";
 
-interface LoaderData {
-  // Define your loader data type here
-}
 
 export const meta: Route.MetaFunction = () => {
   return [
@@ -19,13 +18,14 @@ export const meta: Route.MetaFunction = () => {
   ];
 };
 
-export function loader({ request }: Route.LoaderArgs) {
-  return {
-    // Add your loader data here
-  };
+export const loader = async () => {
+  const topics = await getTopics();
+  const posts = await getPosts();
+  return { topics, posts };
 }
 
 export default function CommunityPage({ loaderData }: Route.ComponentProps) {
+  const { topics, posts } = loaderData;
   const [searchParams, setSearchParams] = useSearchParams();
   const onFilterChange = (key: string, value: string) => {
     searchParams.set(key, value);
@@ -73,17 +73,17 @@ export default function CommunityPage({ loaderData }: Route.ComponentProps) {
             </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
-          {Array.from({ length: 12 }).map((_, index) => (
+          {posts.map((post, index) => (
             <PostCard
               key={index}
-              id={`postId-${index}`}
-              title={`Why I'm not using it anymore`}
-              authorName="Sohye"
-              authorAvatarUrl="https://github.com/apple.png"
-              authorInitials="SK"
-              category="Category"
-              timeAgo="12 hours ago"
-              votesCount={10}
+              id={post.post_id}
+              title={post.title}
+              authorName={post.author?.username || "Anonymous"}
+              authorAvatarUrl={post.author?.avatar || ""}
+              authorInitials={post.author?.username?.substring(0, 2) || "AN"}
+              topic={post.topic?.name || "General"}
+              createdAt={DateTime.fromISO(post.created_at).toRelative() || ""}
+              votesCount={post.upvotes[0].count || 0}
               expanded={index === 0}
             />
           ))} 
@@ -92,10 +92,10 @@ export default function CommunityPage({ loaderData }: Route.ComponentProps) {
         <aside className="sticky top-20 sidebar border col-span-1 lg:col-span-2 border-gray-200 p-4 rounded-xl flex flex-col gap-5">
           <div className="flex flex-col items-start space-y-2">
             <h2 className="text-2xl font-bold mb-3">Topics</h2>
-            {["AI Tools", "Software", "Machine Learning", "Front End", "Dev Tools", "Backend", "Productivity"].map((category) => (
-              <Button variant="ghost" asChild key={category} className="p-0 hover:bg-transparent hover:underline">
-              <Link to={`/community?topic=${category}`} className="text-md text-primary hover:text-gray-700 transition-colors duration-200">
-                {category}
+            {topics && topics.map((topic) => (
+              <Button variant="ghost" asChild key={topic.slug} className="p-0 hover:bg-transparent hover:underline">
+              <Link to={`/community?topic=${topic.slug}`} className="text-md text-primary hover:text-gray-700 transition-colors duration-200">
+                {topic.name}
               </Link>
               </Button>
             ))}

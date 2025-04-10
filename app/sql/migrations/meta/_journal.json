@@ -57,6 +57,34 @@
       "when": 1743583236441,
       "tag": "0007_giant_lionheart",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1743584772316,
+      "tag": "0008_overconfident_ken_ellis",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1744030533806,
+      "tag": "0009_white_switch",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1744192147461,
+      "tag": "0010_odd_aaron_stack",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1744192992514,
+      "tag": "0011_material_night_thrasher",
+      "breakpoints": true
     }
   ]
 }

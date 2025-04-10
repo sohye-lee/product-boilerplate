@@ -1,10 +1,8 @@
 import { Form, Link, useNavigate } from "react-router";
 import type { Route } from "./+types/post-page";
 import { Button } from "~/common/components/ui/button";
-import { Card } from "~/common/components/ui/card";
-import { Hero } from "~/common/components/hero";
-import { ArrowRightIcon, ChevronRightIcon, DotIcon, EyeIcon, HeartIcon, MessageCircleIcon } from "lucide-react";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "~/common/components/ui/breadcrumb";
+import { DotIcon } from "lucide-react";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator } from "~/common/components/ui/breadcrumb";
 import { UpvoteButton } from "~/common/components/upvote-button";
 import { Textarea } from "~/common/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
@@ -19,13 +17,14 @@ export function loader({ params }: Route.LoaderArgs) {
   // TODO: Fetch post data from your backend
   return {
     post: {
-      id: params.postId,
+      post_id: params.postId,
       title: "Sample Post",
       content: "This is a sample post content",
       author: {
         name: "John Doe",
         avatar: "/avatars/default.png"
       },
+      topic: "Productivity",
       createdAt: new Date().toISOString(),
       comments: []
     }

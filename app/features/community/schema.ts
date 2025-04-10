@@ -11,7 +11,7 @@ import { profiles } from "../users/schema";
 
 export const topics = pgTable("topics", {
   topic_id: bigint({ mode: "number" }).primaryKey().generatedAlwaysAsIdentity(),
-  topic: text().notNull(),
+  name: text().notNull(),
   slug: text().notNull(),
   created_at: timestamp("created_at").defaultNow()
 });
@@ -20,14 +20,18 @@ export const posts = pgTable("posts", {
   post_id: bigint({ mode: "number" }).primaryKey().generatedAlwaysAsIdentity(),
   title: text().notNull(),
   content: text().notNull(),
-  topic_id: bigint({ mode: "number" }).references(() => topics.topic_id, {
-    onDelete: "cascade"
-  }),
-  profile_id: uuid().references(() => profiles.profile_id, {
-    onDelete: "cascade"
-  }),
-  created_at: timestamp("created_at").defaultNow(),
-  updated_at: timestamp("updated_at").defaultNow()
+  topic_id: bigint({ mode: "number" })
+    .references(() => topics.topic_id, {
+      onDelete: "cascade"
+    })
+    .notNull(),
+  profile_id: uuid()
+    .references(() => profiles.profile_id, {
+      onDelete: "cascade"
+    })
+    .notNull(),
+  created_at: timestamp("created_at").defaultNow().notNull(),
+  updated_at: timestamp("updated_at").defaultNow().notNull()
 });
 
 export const post_upvotes = pgTable(
