@@ -78,13 +78,13 @@ export default function CommunityPage({ loaderData }: Route.ComponentProps) {
               key={index}
               id={post.post_id}
               title={post.title}
-              authorName={post.author?.username || "Anonymous"}
-              authorAvatarUrl={post.author?.avatar || ""}
-              authorInitials={post.author?.username?.substring(0, 2) || "AN"}
-              topic={post.topic?.name || "General"}
+              authorName={post.author_name}
+              authorAvatarUrl={post.author_avatar || ""}
+              authorInitials={post.author_username?.substring(0, 2) || "AN"}
+              topic={post.topic}
               createdAt={DateTime.fromISO(post.created_at).toRelative() || ""}
-              votesCount={post.upvotes[0].count || 0}
-              expanded={index === 0}
+              votesCount={post.upvotes || 0}
+              expanded 
             />
           ))} 
         </div>

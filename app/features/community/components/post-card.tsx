@@ -9,7 +9,7 @@ interface PostCardProps {
   id: number
   title: string
   authorName: string
-  authorAvatarUrl: string
+  authorAvatarUrl: string | null
   authorInitials: string
   topic: string
   createdAt: string
@@ -23,7 +23,7 @@ export function PostCard({ id, title, authorName, authorAvatarUrl, authorInitial
       <Card className={cn("bg-transparent hover:bg-purple-50/50 transition-colors duration-300 h-full min-h-[170px]",  ' flex flex-col justify-between')}> 
         <CardHeader className={cn("flex flex-row gap-2 ", expanded ? 'pb-0' : ' items-center')}>
           <Avatar className="size-14">
-            <AvatarImage src={authorAvatarUrl} />
+            <AvatarImage src={authorAvatarUrl || ""} />
             <AvatarFallback>{authorInitials}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col gap-1">

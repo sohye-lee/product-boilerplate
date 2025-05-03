@@ -85,6 +85,13 @@
       "when": 1744192992514,
       "tag": "0011_material_night_thrasher",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1745094383741,
+      "tag": "0012_flippant_scarlet_witch",
+      "breakpoints": true
     }
   ]
 }
